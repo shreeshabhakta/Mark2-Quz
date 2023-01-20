@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    var readlineSync = require("readline-sync");
+var score = 0;
+
+//data of maxscore
+
+var maxScore = [
+    {
+        name: "shreesha",
+        score: 5,
+    },
+    {
+        name: "shreya",
+        score: 3,
+    },
+]
+
+//wecome
+
+function welcome() {
+    var userName = readlineSync.question("what is your name\n");
+
+    console.log("welcome " + userName + " to quiz on India")
+
+}
+
+function playquiz(question, answer) {
+    var userAnswer = readlineSync.question(question);
+
+    if (userAnswer.toUpperCase() === answer.toUpperCase()) {
+        console.log("Your answer is correct");
+        score = score + 1;
+    } else {
+        console.log("you are wrong");
+        score = score - 1;
+    }
+
+    console.log("Your current score : ", score);
+    console.log("------------------------")
+}
+//quuiz question
+var questions = [{
+    question: "which is national capital of india ?",
+    answer: "newdelhi"
+},
+{
+    question: "which is nathional anthem of india ?",
+    answer: "jana gana mana"
+},
+{
+    question: "which is national birds of india",
+    answer: "peacock"
+},
+{
+    question: "on which month republic day is celebrated",
+    answer: "january"
+},
+{
+    question: "which is oldername of karnataka",
+    answer: "mysore state"
+}];
+
+function quiz() {
+    for (i = 0; i < questions.length; i++) {
+        var atquestion = questions[i];
+        playquiz(atquestion.question, atquestion.answer)
+    }
+}
+
+function printScores() {
+    console.log("huuray you score : ", score);
+
+    console.log("Check out the highscores, if you should be there ping me ans i will update");
+
+    maxScore.map(score => console.log(score.name, ":",
+        score.score))
+}
+
+welcome();
+quiz();
+printScores();
+
+</body>
+</html>
